@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Due Date Tracker - Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📅 Due Date Tracker</h1>
+            <p class="subtitle">Manage your tasks and deadlines efficiently</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Calendar Section -->
+            <div class="calendar-section">
+                <div class="calendar-header">
+                    <button id="prevBtn" class="nav-btn">&larr; Previous</button>
+                    <h2 id="monthYear">{{ calendar.month_name }} {{ calendar.year }}</h2>
+                    <button id="nextBtn" class="nav-btn">Next &rarr;</button>
+                </div>
+
+                <div class="calendar-wrapper">
+                    <div id="calendar" class="calendar">
+                        <!-- Calendar will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tasks Section -->
+            <aside class="sidebar">
+                <div class="tasks-container">
+                    <h3>📋 Tasks for Selected Day</h3>
+                    <div id="tasksList" class="tasks-list">
+                        <p class="no-tasks">Select a day to view tasks</p>
+                    </div>
+                </div>
+
+                <!-- Add New Task Form -->
+                <div class="add-task-form">
+                    <h3>➕ Add New Task</h3>
+                    <form id="taskForm">
+                        <div class="form-group">
+                            <label for="taskDay">Day:</label>
+                            <input type="number" id="taskDay" min="1" max="31" placeholder="Day of month">
+                        </div>
+                        <div class="form-group">
+                            <label for="taskTitle">Title:</label>
+                            <input type="text" id="taskTitle" placeholder="Task title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskDesc">Description:</label>
+                            <textarea id="taskDesc" placeholder="Task description (optional)" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskPriority">Priority:</label>
+                            <select id="taskPriority">
+                                <option value="low">Low</option>
+                                <option value="normal" selected>Normal</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Task</button>
+                    </form>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
